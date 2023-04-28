@@ -18,12 +18,6 @@ from tqdm import tqdm
 
 os.environ["PYOPENGL_PLATFORM"] = "egl"
 
-"""
-# --------------------------------
-# CheckerBoard, from Xianghui Xie
-# --------------------------------
-"""
-
 
 class CheckerBoard:
     def __init__(self, white=(247, 246, 244), black=(146, 163, 171)):
@@ -43,10 +37,6 @@ class CheckerBoard:
         ysquares = int(ylength / square_size)
         verts, faces, texts = [], [], []
         fcount = 0
-        # black = torch.tensor([0, 0, 0.], dtype=torch.float32).cuda()
-        # white = torch.tensor([1., 1., 1.], dtype=torch.float32).cuda()
-        # white = np.array([247, 246, 244]) / 255.
-        # black = np.array([146, 163, 171]) / 255.
         for i in range(xsquares):
             for j in range(ysquares):
                 p1 = np.array([i * square_size, j * square_size, 0])
@@ -74,10 +64,7 @@ class CheckerBoard:
 
         # now compose as mesh
         mesh = trimesh.Trimesh(
-            vertices=np.array(verts) + np.array([-5, -5, 0]), faces=np.array(faces)
-        )  # , fc=np.array(texts))
-        mesh.visual.face_colors = np.array(texts)
-        # mesh.vertices += np.array([-5, -5, 0])
+            vertices=np.array(verts) + np.array([-5, -5, 0]), faces=np.array(faces), process=False, face_colors=np.array(texts))
         return mesh
 
 
@@ -101,10 +88,7 @@ def save_animation(body_pose, savepath, bm, fps=60, resolution=(800, 800)):
         )
 
         generator = CheckerBoard()
-        checker = generator.gen_checker_xy(generator.black, generator.white)
-        checker_mesh = trimesh.Trimesh(
-            checker.v, checker.f, process=False, face_colors=checker.fc
-        )
+        checker_mesh = generator.gen_checker_xy(generator.black, generator.white)
 
         body_mesh.apply_transform(
             trimesh.transformations.rotation_matrix(-90, (0, 0, 10))
