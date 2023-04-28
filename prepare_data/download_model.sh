@@ -1,12 +1,10 @@
 #!/bin/sh
 # Copyright (c) Meta Platforms, Inc. All Rights Reserved
 
-mkdir -p pretrained
-cd pretrained/ || exit
+# Download model command
+wget https://github.com/facebookresearch/AGRoL/releases/download/v0/agrol_AMASS_pretrained_weights.zip
 
-# Download model command: coming soon
+unzip agrol_AMASS_pretrained_weights.zip -d pretrained_weights
+rm agrol_AMASS_pretrained_weights.zip
 
-unzip agrol.zip
-rm agrol.zip
-
-printf "Pre-trained model was downloaded into pretreined/ folder!"
+echo "Pre-trained model was downloaded into './pretrained_weights' folder!"

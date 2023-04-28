@@ -2,3 +2,4 @@ TARGETS
 body_visualizer
 human_body_prior
 *_fb.py
+pretrained_weights/

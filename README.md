@@ -67,19 +67,24 @@ python test.py --model_path /path/to/your/model --timestep_respacing ddim5 --sup
 python test.py --model_path /path/to/your/model --support_dir /path/to/your/smpls/dmpls --dataset_path ./dataset/AMASS/
 ```
 
-## Pretrained Weights
-The pretrained weights for AGROL can be downloaded from this link: *coming soon*.
-To do it automatically, please run `bash prepare_data/download_model.sh`.
-
-
 ## Training
-To train the AGRoL model(diffusion-model):
+To train the AGRoL diffusion-model:
 ```
 python train.py --save_dir /path/to/save/your/model --dataset amass --weight_decay 1e-4 --batch_size 256 --lr 3e-4 --latent_dim 512 --save_interval 1 --log_interval 1 --device 0 --input_motion_length 196 --diffusion_steps 1000 --num_workers 8 --motion_nfeat 132 --arch diffusion_DiffMLP --layers 12 --sparse_dim 54 --train_dataset_repeat_times 1000 --lr_anneal_steps 225000 --overwrite
 ```
 To train the MLP model:
 ```
 python train.py --save_dir /path/to/save/your/model --dataset amass --weight_decay 1e-4 --batch_size 256 --lr 3e-4 --latent_dim 512 --save_interval 1 --log_interval 1 --device 0 --input_motion_length 196 --diffusion_steps 1000 --num_workers 8 --motion_nfeat 132 --arch mlp_PureMLP --layers 12 --sparse_dim 54 --train_dataset_repeat_times 1000 --lr_anneal_steps 225000 --overwrite --no_normalization
+```
+
+## Pretrained Weights
+The pretrained weights for AGRoL can be downloaded from this link: https://github.com/facebookresearch/AGRoL/releases/tag/v0
+
+To download the wights automatically, please run `bash prepare_data/download_model.sh`.
+
+To test the pretrained AGRoL diffusion-model:
+```
+python test.py --model_path pretrained_weights/diffmlp.pt --timestep_respacing ddim5 --support_dir /path/to/your/smpls/dmpls --dataset_path ./dataset/AMASS/
 ```
 
 ## License
