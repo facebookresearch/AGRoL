@@ -87,6 +87,11 @@ To test the pretrained AGRoL diffusion-model:
 python test.py --model_path pretrained_weights/diffmlp.pt --timestep_respacing ddim5 --support_dir /path/to/your/smpls/dmpls --dataset_path ./dataset/AMASS/
 ```
 
+To visualize the generated motions, add these commands behind:
+```
+--vis --output_dir /path/to/save/your/videos
+```
+
 ## License
 ![CC BY-NC 4.0][cc-by-nc-shield]
 
@@ -107,4 +112,15 @@ If you find our work inspiring or use our codebase in your research, please cons
   booktitle = {CVPR},
   year      = {2023},
 }
+```
+
+## Trouble Shooting
+
+If you encounter this error during visualization:
+```
+ValueError: Cannot use face colors with a smooth mesh
+```
+You can fix it by changing the line 88 in your `body_visualizer/mesh/mesh_viewer.py` to:
+```
+mesh = pyrender.Mesh.from_trimesh(mesh, smooth=False)
 ```
