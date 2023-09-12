@@ -141,10 +141,10 @@ def load_data(dataset, dataset_path, split, **kwargs):
             split : train or test
             input_motion_length : the input motion length
 
-    Outout:
+    Output:
         - For test:
             filename_list : List of all filenames in the dataset
-            motion_list : List contains N dictoinaries, with
+            motion_list : List contains N dictionaries, with
                         "hmd_position_global_full_gt_list" - sparse features of the 3 joints
                         "local_joint_parameters_gt_list" - body parameters Nx7[tx,ty,tz,rx,ry,rz] as the input of the human kinematic model
                         "head_global_trans_list" - Tx4x4 matrix which contains the global rotation and global translation of the head movement
