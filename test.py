@@ -336,7 +336,7 @@ def evaluate_prediction(
     filename,
 ):
     motion_pred = sample.squeeze().cuda()
-    # Get the  prediction from the model
+    # Get the prediction from the model
     model_rot_input = (
         utils_transform.sixd2aa(motion_pred.reshape(-1, 6).detach())
         .reshape(motion_pred.shape[0], -1)
@@ -354,7 +354,7 @@ def evaluate_prediction(
         }
     ).Jtr
 
-    # Get the offset in global coordiante system between head and body_world.
+    # Get the offset in global coordinate system between head and body_world.
     t_head2root = -body_pose_local[:, 15, :]
     t_root2world = t_head2root + t_head2world.cuda()
 
@@ -374,7 +374,7 @@ def evaluate_prediction(
         body_param[k] = v.squeeze().cuda()
         body_param[k] = body_param[k][-predicted_angle.shape[0] :, ...]
 
-    # Get the  ground truth position from the model
+    # Get the ground truth position from the model
     gt_body = body_model(body_param)
     gt_position = gt_body.Jtr[:, :22, :]
 

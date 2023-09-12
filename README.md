@@ -8,7 +8,7 @@
 
 <p align="center"> <img src='imgs/teaser.jpg' align="center" > </p>
 
-## Enviroment Setup
+## Environment Setup
 All our experiments are done on a single V-100 16G GPU.
 ```
 conda env create -f environment.yml
@@ -80,7 +80,7 @@ python train.py --save_dir /path/to/save/your/model --dataset amass --weight_dec
 ## Pretrained Weights
 The pretrained weights for AGRoL can be downloaded from this link: https://github.com/facebookresearch/AGRoL/releases/tag/v0
 
-To download the wights automatically, please run `bash prepare_data/download_model.sh`.
+To download the weights automatically, please run `bash prepare_data/download_model.sh`.
 
 To test the pretrained AGRoL diffusion-model:
 ```
